@@ -2,15 +2,29 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+<?import javafx.scene.layout.*?>
+<VBox alignment="center" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
       fx:controller="ru.geekbrains.MainController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <HBox VBox.vgrow="ALWAYS">
+        <fx:include fx:id="leftPanel" source="panel.fxml" HBox.hgrow="ALWAYS"/>
+        <fx:include fx:id="rightPanel" source="panel.fxml" HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <HBox spacing="5">
+        <Button fx:id="copyButton" maxWidth="Infinity" focusTraversable="false" text="Копировать файл"
+                HBox.hgrow="ALWAYS"/>
+        <!--                onAction="#buttonAction"/>-->
+        <Button fx:id="moveButton" maxWidth="Infinity" focusTraversable="false" text="Перестить файл"
+                HBox.hgrow="ALWAYS"/>
+        <!--                onAction="#buttonAction"/>-->
+        <Button fx:id="removeButton" maxWidth="Infinity" focusTraversable="false" text="Удалить файл"
+                HBox.hgrow="ALWAYS"/>
+        <!--                onAction="#buttonAction"/>-->
+        <Button maxWidth="Infinity" focusTraversable="false" text="Выход из программы" HBox.hgrow="ALWAYS" />
+        <!--                onAction="#btnExitAction"/>-->
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </padding>
+    </HBox>
 </VBox>
