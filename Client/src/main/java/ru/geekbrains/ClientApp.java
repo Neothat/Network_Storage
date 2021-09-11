@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application {
+public class ClientApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1100, 600);
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("/joint.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Java Network Storage");
         stage.setScene(scene);
         stage.show();

@@ -5,11 +5,13 @@ import java.sql.*;
 public class Authentication {
 
     private static PreparedStatement psGetNickname;
+    private static Connection connection;
+    private static final String bdAddress = "D:/Trash/Network_Storage/Server/users.db";
 
     public static boolean connect() {
         try {
             Class.forName("org.sqlite.JDBC");
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:users.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:" + bdAddress);
             psGetNickname = connection.prepareStatement("SELECT nickname FROM users_data WHERE login = ? AND password = ?;");
             return true;
         } catch (ClassNotFoundException | SQLException e) {
@@ -18,7 +20,7 @@ public class Authentication {
         }
     }
 
-    public String getNicknameByLoginAndPassword(String login, String password) {
+    public static String getNicknameByLoginAndPassword(String login, String password) {
         String nick = null;
         try {
             psGetNickname.setString(1, login);
@@ -32,5 +34,14 @@ public class Authentication {
             e.printStackTrace();
         }
         return nick;
+    }
+
+    public static void disconnect(){
+        try {
+            psGetNickname.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

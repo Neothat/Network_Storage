@@ -1,28 +1,32 @@
 package ru.geekbrains;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MainHandler extends SimpleChannelInboundHandler<String> {
 
-public class MainHandler extends ChannelInboundHandlerAdapter {
+    private String token[];
+
+    private String nickname;
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf buf = (ByteBuf) msg;
-        while (buf.readableBytes() > 0) {
-            System.out.println((char) buf.readByte());
+    protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
+        if (s.startsWith("/auth")) {
+            token = s.split("\\s", 0);
+            nickname = ServerApp.getAuthService()
+                    .getNicknameByLoginAndPassword(token[1], token[2]);
+            if (nickname != null) {
+                channelHandlerContext.channel().writeAndFlush("/authOk " + nickname);
+//                break;
+            } else {
+                channelHandlerContext.channel().writeAndFlush("/authFail ");
+            }
         }
-        buf.release();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        super.exceptionCaught(ctx, cause);
+        System.out.println("Клиент " + nickname + " отвалился");
+        ctx.close();
     }
-
 }
