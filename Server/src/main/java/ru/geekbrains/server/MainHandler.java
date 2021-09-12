@@ -1,4 +1,4 @@
-package ru.geekbrains;
+package ru.geekbrains.server;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

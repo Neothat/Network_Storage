@@ -1,4 +1,4 @@
-package ru.geekbrains;
+package ru.geekbrains.controllers;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -7,11 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import ru.geekbrains.Network;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainController{
 
     private Network network;
 
@@ -19,12 +20,6 @@ public class MainController implements Initializable {
     public VBox leftPanel, rightPanel;
     @FXML
     public Button copyButton, moveButton, removeButton;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-//        network = new Network();
-    }
-
 
     public void buttonAction(ActionEvent actionEvent) {
         network.sendMessage("");

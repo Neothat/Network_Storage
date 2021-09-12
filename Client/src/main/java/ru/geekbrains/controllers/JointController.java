@@ -1,10 +1,11 @@
-package ru.geekbrains;
+package ru.geekbrains.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import ru.geekbrains.Network;
 
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -1,6 +1,5 @@
-package ru.geekbrains;
+package ru.geekbrains.client;
 
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import javafx.application.Platform;
@@ -8,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ru.geekbrains.controllers.JointController;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -17,7 +17,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
     private String nickname;
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
+    public void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {
         if (s.startsWith("/authOk ")) {
             nickname = s.split("\\s")[1];
 

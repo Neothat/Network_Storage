@@ -1,4 +1,4 @@
-package ru.geekbrains;
+package ru.geekbrains.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -9,8 +9,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-
-import java.io.IOException;
+import ru.geekbrains.auth.AuthService;
+import ru.geekbrains.auth.AuthServiceImpl;
+import ru.geekbrains.auth.Authentication;
 
 public class ServerApp {
     private static final int PORT = 8189;
